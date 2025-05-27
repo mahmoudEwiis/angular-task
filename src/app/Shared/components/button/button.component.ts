@@ -1,6 +1,6 @@
 import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
 import { Component, ContentChild, EventEmitter, HostListener, Input, Output, TemplateRef } from '@angular/core';
-import { ButtonSize, ButtonType } from './types/buttons';
+import { ButtonSize, ButtonType } from './types/buttons.type';
 import { ButtonConfig } from './interface/button';
 
 
@@ -12,6 +12,7 @@ import { ButtonConfig } from './interface/button';
 })
 export class ButtonComponent implements ButtonConfig {
 
+  // btntype , size, block, rounded, disabled, loading, submit, outline
   @Input() btnType: ButtonType = 'primary';
   @Input() size: ButtonSize = 'md';
   @Input() block = false;

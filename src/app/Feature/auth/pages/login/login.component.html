@@ -1,1 +1,25 @@
-<p>login works!</p>
+
+<div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+        <div class="login-page col-md-6 col-lg-4 mx-auto">
+            <div class=" text-center mb-4">
+                <img routerLink="/" src="/favicon.ico" alt="Logo" class="img-fluid  mb-4">
+                <p class="text-center text-muted mb-4">Please sign in to your account</p>
+            </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <app-input-field label="Email" type="email" placeholder="your@email.com"
+                    [control]="loginForm.controls['email']" [required]="true"></app-input-field>
+
+                <app-input-field label="Password" type="password" placeholder="Your password"
+                    [control]="loginForm.controls['password']" [required]="true"></app-input-field>
+
+                <app-button [block]="true" [loading]="isLoading" [submit]="true">Sign In</app-button>
+
+                <p class="text-center mt-4">
+                    Don't have an account? <a routerLink="/auth/register" class="text-decoration-none">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>

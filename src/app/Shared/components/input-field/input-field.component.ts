@@ -1,6 +1,27 @@
+import {
+  Component,
+  Input,
+  ViewChild,
+  ContentChild,
+  ElementRef,
+  forwardRef,
+  TemplateRef
+} from '@angular/core';
+import {
+  AbstractControl,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule
+} from '@angular/forms';
 import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
-import { Component, ContentChild, ElementRef, forwardRef, Input, TemplateRef, ViewChild } from '@angular/core';
-import { FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+
+import {
+  InputType,
+  InputSize,
+  InputState,
+  InputShape,
+  InputIconPosition,
+  InputIconType
+} from './types/inputTypes.type'; 
 
 @Component({
   selector: 'app-input-field',
@@ -18,7 +39,6 @@ import { FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/fo
 export class InputFieldComponent {
   @Input() id = `input-${Math.random().toString(36).substring(2, 9)}`;
   @Input() label = '';
-  @Input() type = 'text';
   @Input() placeholder = '';
   @Input() hint = '';
   @Input() required = false;
@@ -26,18 +46,22 @@ export class InputFieldComponent {
   @Input() readonly = false;
   @Input() showValidFeedback = true;
   @Input() noMargin = false;
-  @Input() control?: FormControl;
+  @Input() control?: AbstractControl;
+
+  @Input() type: InputType = 'text';
+  @Input() size: InputSize = 'md';
+  @Input() state: InputState = 'default';
+  @Input() shape: InputShape = 'rounded';
+  @Input() icon?: InputIconType;
+  @Input() iconPosition: InputIconPosition = 'left';
 
   @ViewChild('inputElement') inputElement?: ElementRef<HTMLInputElement>;
-
   @ContentChild('prepend') prependTemplate?: TemplateRef<any>;
   @ContentChild('append') appendTemplate?: TemplateRef<any>;
 
   value = '';
-  onChange = (_: any) => {
-  };
-  onTouched = () => {
-  };
+  onChange = (_: any) => {};
+  onTouched = () => {};
 
   onInput(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
@@ -51,8 +75,6 @@ export class InputFieldComponent {
 
   writeValue(value: any): void {
     this.value = value || '';
-
-    // Update the input element value if it exists
     if (this.inputElement && this.inputElement.nativeElement) {
       this.inputElement.nativeElement.value = this.value;
     }
@@ -73,5 +95,4 @@ export class InputFieldComponent {
   focus(): void {
     this.inputElement?.nativeElement.focus();
   }
-
 }
