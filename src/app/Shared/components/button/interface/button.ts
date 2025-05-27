@@ -1,4 +1,4 @@
-import {  ButtonSize, ButtonState, ButtonType } from "../types/buttons";
+import {  ButtonSize, ButtonState, ButtonType } from "../types/buttons.type";
 
 
 export interface ButtonConfig {
