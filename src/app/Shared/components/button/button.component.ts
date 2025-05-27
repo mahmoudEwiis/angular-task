@@ -5,7 +5,7 @@ import { ButtonConfig } from './interface/button';
 
 
 @Component({
-  selector: 'app-button',
+  selector: 'app-button ',
   imports: [NgClass, NgIf, NgTemplateOutlet],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss'
@@ -38,7 +38,7 @@ export class ButtonComponent implements ButtonConfig {
     return {
       [typeClass]: true,
       [`btn-${this.size}`]: this.size !== 'md',
-      'btn-block w-100': this.block,
+      'btn-block': this.block,
       'rounded-pill': this.rounded,
       'disabled': this.disabled || this.loading
     };
