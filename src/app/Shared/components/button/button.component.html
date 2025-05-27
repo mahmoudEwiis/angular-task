@@ -1,0 +1,9 @@
+<button [type]="submit ? 'submit' : 'button'" [disabled]="disabled || loading" [ngClass]="buttonClasses" class="btn">
+    <div class="d-flex align-items-center">
+        <span class="spinner-border spinner-border-sm me-2" *ngIf="loading"></span>
+        <ng-container *ngIf="iconTemplate">
+            <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
+        </ng-container>
+        <ng-content></ng-content>
+    </div>
+</button>
