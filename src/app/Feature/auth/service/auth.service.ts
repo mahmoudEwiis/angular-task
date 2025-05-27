@@ -26,9 +26,10 @@ export class AuthService {
     );
   }
 
-  register(name: string, email: string, password: string): Observable<any> {
+  register(name: string, username: string, email: string, password: string): Observable<any> {
     const newUser = {
       firstName: name,
+      username,
       email,
       password
     };

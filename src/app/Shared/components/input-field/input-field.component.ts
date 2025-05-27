@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import {
   AbstractControl,
+  FormControl,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule
 } from '@angular/forms';
@@ -46,7 +47,7 @@ export class InputFieldComponent {
   @Input() readonly = false;
   @Input() showValidFeedback = true;
   @Input() noMargin = false;
-  @Input() control?: AbstractControl;
+  @Input() control!: FormControl;
 
   @Input() type: InputType = 'text';
   @Input() size: InputSize = 'md';

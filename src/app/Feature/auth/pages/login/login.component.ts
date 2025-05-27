@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { ButtonComponent } from '../../../../Shared/components/button/button.component';
 import { InputFieldComponent } from "../../../../Shared/components/input-field/input-field.component";
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../service/auth.service';
 @Component({
   selector: 'app-login',
   imports: [
-    ButtonComponent, 
+    ButtonComponent,
     InputFieldComponent,
     CommonModule,
     ReactiveFormsModule,
@@ -20,26 +21,40 @@ export class LoginComponent {
   loginForm: FormGroup;
   isLoading = false;
 
+  usernameControl!: FormControl;
+  passwordControl!: FormControl;
+
   constructor(
     private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      rememberMe: [false]
     });
+    this.usernameControl = this.loginForm.get('username') as FormControl;
+    this.passwordControl = this.loginForm.get('password') as FormControl;
   }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.isLoading = true;
-      setTimeout(() => {
-        console.log('Login successful', this.loginForm.value);
-        this.isLoading = false;
-      }, 2000);
+      const { username, password } = this.loginForm.value;
+      this.authService.login(username, password).subscribe({
+        next: (response) => {
+          console.log('Login successful:', response);
+          this.authService.setToken(response.accessToken);
+          this.isLoading = false;
+        },
+        error: (error) => {
+          console.error('Login failed:', error);
+          this.isLoading = false;
+        }
+      });
     } else {
-      console.log('Form is invalid');
+      console.error('Form is invalid');
+      this.isLoading = false;
     }
   }
-
 }

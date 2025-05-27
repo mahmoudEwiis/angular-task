@@ -4,39 +4,42 @@
         <span class="text-danger" *ngIf="required">*</span>
     </label>
 
-    <div class="input-group" [ngClass]="{ 'has-validation': control?.invalid && (control?.dirty || control?.touched) }">
+    <div class="input-group" [ngClass]="{ 'has-validation': control.invalid && (control.dirty || control.touched) }">
         <span class="input-group-text" *ngIf="prependTemplate">
             <ng-container *ngTemplateOutlet="prependTemplate"></ng-container>
         </span>
 
-        <input #inputElement [type]="type" [id]="id" class="form-control" [placeholder]="placeholder"
+        <!-- <input #inputElement [type]="type" [id]="id" class="form-control" [placeholder]="placeholder"
             [disabled]="disabled" [readonly]="readonly" [value]="value" [ngClass]="{ 
             'is-invalid': control?.invalid && (control?.dirty || control?.touched),
             'is-valid': control?.valid && (control?.dirty || control?.touched) && showValidFeedback
-          }" (input)="onInput($event)" (blur)="onBlur()" />
+          }" (input)="onInput($event)" (blur)="onBlur()" /> -->
+
+        <input #inputElement [type]="type" [id]="id" class="form-control" [placeholder]="placeholder"
+            [disabled]="disabled" [readonly]="readonly" [formControl]="control" (blur)="onBlur()" />
 
         <span class="input-group-text" *ngIf="appendTemplate">
             <ng-container *ngTemplateOutlet="appendTemplate"></ng-container>
         </span>
 
-        <div class="invalid-feedback" *ngIf="control?.invalid && (control?.dirty || control?.touched)">
+        <div class="invalid-feedback" *ngIf="control.invalid && (control.dirty || control.touched)">
             <ng-container *ngIf="control?.errors?.['required']">
                 This field is required
             </ng-container>
             <ng-container *ngIf="control?.errors?.['email']">
                 Please enter a valid email address
             </ng-container>
-            <ng-container *ngIf="control?.errors?.['minlength']">
-                This field must be at least {{ control?.errors?.['minlength']?.requiredLength }} characters
+            <ng-container *ngIf="control && control.errors && control.errors['minlength']">
+                This field must be at least {{ control.errors['minlength'].requiredLength }} characters
             </ng-container>
-            <ng-container *ngIf="control?.errors?.['maxlength']">
-                This field cannot exceed {{ control?.errors?.['maxlength']?.requiredLength }} characters
+            <ng-container *ngIf="control && control.errors && control.errors['maxlength']">
+                This field cannot exceed {{ control.errors['maxlength'].requiredLength }} characters
             </ng-container>
-            <ng-container *ngIf="control?.errors?.['pattern']">
+            <ng-container *ngIf="control && control.errors && control.errors['pattern']">
                 Please enter a valid format
             </ng-container>
-            <ng-container *ngIf="control?.errors?.['custom']">
-                {{ control?.errors?.['custom'] }}
+            <ng-container *ngIf="control && control.errors && control.errors['custom']">
+                {{ control.errors['custom'] }}
             </ng-container>
         </div>
     </div>

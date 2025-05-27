@@ -1,24 +1,29 @@
-
 <div class="container">
     <div class="row justify-content-center align-items-center vh-100">
         <div class="col-md-6 col-lg-4 mx-auto">
             <div class="register-page">
-                <h1 class="text-center mb-4">Create Account</h1>
-                <p class="text-center text-muted mb-4">Join our platform today</p>
+                <div class=" text-center mb-4">
+                    <img routerLink="/" src="/favicon.ico" alt="Logo" class="img-fluid  mb-4">
+                    <p class="text-center text-muted mb-4">Join our platform today</p>
+                </div>
 
                 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                    <app-input-field label="Full Name" placeholder="John Doe" [control]="registerForm.controls['name']"
+
+                    <app-input-field label="Full Name" placeholder="John Doe" [control]="nameControl"
                         [required]="true"></app-input-field>
 
-                    <app-input-field label="Email" type="email" placeholder="your@email.com"
-                        [control]="registerForm.controls['email']" [required]="true"></app-input-field>
+                    <app-input-field label="Username" placeholder="your username" [control]="usernameControl"
+                        [required]="true"></app-input-field>
+
+                    <app-input-field label="Email" type="email" placeholder="your@email.com" [control]="emailControl"
+                        [required]="true"></app-input-field>
 
                     <app-input-field label="Password" type="password" placeholder="Create a password"
-                        [control]="registerForm.controls['password']" [required]="true"
+                        [control]="passwordControl" [required]="true"
                         hint="Password must be at least 6 characters"></app-input-field>
 
                     <app-input-field label="Confirm Password" type="password" placeholder="Confirm your password"
-                        [control]="registerForm.controls['confirmPassword']" [required]="true"></app-input-field>
+                        [control]="confirmPasswordControl" [required]="true"></app-input-field>
 
                     <app-button [block]="true" [loading]="isLoading" [submit]="true"
                         [disabled]="!registerForm.valid">Create Account</app-button>
