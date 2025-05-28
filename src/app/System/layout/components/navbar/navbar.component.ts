@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
-import { AuthService } from './../../../../auth/service/auth.service';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgIf } from '@angular/common';
+import { AuthService } from '../../../../Feature/auth/service/auth.service';
 
 @Component({
   selector: 'app-navbar',

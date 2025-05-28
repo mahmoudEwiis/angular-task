@@ -12,6 +12,6 @@ export const routes: Routes = [
   },
   {
     path: 'system',
-    loadChildren: () => import('./Feature/System/system.routes').then(m => m.SYSTEM_ROUTES)
+    loadChildren: () => import('./System/system.routes').then(m => m.SYSTEM_ROUTES)
   },
 ];
