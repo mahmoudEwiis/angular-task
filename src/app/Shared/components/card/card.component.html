@@ -1,0 +1,22 @@
+<div class="card h-100" [ngStyle]="{ width }" [ngClass]="cardClasses">
+    <div class="fixed-img mx-auto p-2 ">
+        <img *ngIf="image" [src]="image" class="img-fluid h-100" alt="Card image" />
+    </div>
+
+    <div class="card-header" *ngIf="headerTemplate || title">
+        <ng-container *ngIf="headerTemplate; else defaultHeader">
+            <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+        </ng-container>
+        <ng-template #defaultHeader>
+            <h5 class="card-title mb-0">{{ title }}</h5>
+        </ng-template>
+    </div>
+
+    <div class="card-body d-flex flex-column justify-content-between" [ngClass]="bodyClasses">    
+        <ng-content></ng-content>
+        <br />
+        <a *ngIf="buttonText && buttonLink" class="btn btn-primary mt-2 justify-self-end" [routerLink]="buttonLink">
+            {{ buttonText }}
+        </a>
+    </div>
+</div>
