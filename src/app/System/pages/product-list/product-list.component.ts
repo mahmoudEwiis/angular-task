@@ -19,7 +19,7 @@ export class ProductListComponent implements OnInit {
   getProducts() {
     this.SystemService.getProducts().subscribe({
       next: (response:any) => {
-        this.products = response || [];
+        this.products = response.products || [];
         console.log('Products fetched successfully:', this.products);
         this.loading = false;
       },
