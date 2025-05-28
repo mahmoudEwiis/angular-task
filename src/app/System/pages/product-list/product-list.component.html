@@ -1,1 +1,12 @@
-<p>product-list works!</p>
+<div class="container">
+    <div class="row justify-content-center">
+        @for (product of products; track $index) {
+            <div class="col-12 col-md-6 col-lg-3 mb-3 px-3">
+                <app-card [title]="product.title.split(' ').slice(0, 3).join(' ') + '...' "  [image]="product.image"
+                    [buttonText]="'Learn More'" [buttonLink]="'/system/product/' + product.id" [shadow]="'md'" [hover]="true" [width]="'20rem'">
+                    {{ product.description.split(' ').slice(0, 20).join(' ') + '...' }}
+                </app-card>
+            </div>
+        }
+    </div>
+</div>
