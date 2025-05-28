@@ -6,19 +6,23 @@ export const SYSTEM_ROUTES: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-    //   {
-    //     path: '',
-    //     redirectTo: 'dashboard',
-    //     pathMatch: 'full'
-    //   },
-    //   {
-    //     path: 'dashboard',
-    //     loadComponent: () => import('./pages/dashboard/dashboard.component').then(c => c.DashboardComponent)
-    //   },
-    //   {
-    //     path: 'products',
-    //     loadChildren: () => import('./feature/product/product.routes').then(m => m.PRODUCT_ROUTES)
-    //   }
+      {
+        path: '',
+        redirectTo: 'products',
+        pathMatch: 'full'
+      },
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./pages/dashboard/dashboard.component').then(c => c.DashboardComponent)
+      },
+      {
+        path: 'products',
+        loadComponent: () => import('./pages/product-list/product-list.component').then(c => c.ProductListComponent)
+      },
+      {
+        path: 'product/:id',
+        loadComponent: () => import('./pages/product-detail/product-detail.component').then(c => c.ProductDetailComponent)
+      }
     ]
   }
 ];
