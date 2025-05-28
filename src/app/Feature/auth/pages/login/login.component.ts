@@ -45,6 +45,8 @@ export class LoginComponent {
         next: (response) => {
           console.log('Login successful:', response);
           this.authService.setToken(response.accessToken);
+          this.getCurrentUser();
+          this.router.navigate(['/system']);
           this.isLoading = false;
         },
         error: (error) => {
@@ -56,5 +58,16 @@ export class LoginComponent {
       console.error('Form is invalid');
       this.isLoading = false;
     }
+  }
+
+  getCurrentUser(): void {
+    this.authService.getCurrentUser().subscribe({
+      next: (user) => {
+        console.log('Current user:', user);
+      },
+      error: (error) => {
+        console.error('Failed to fetch current user:', error);
+      }
+    });
   }
 }

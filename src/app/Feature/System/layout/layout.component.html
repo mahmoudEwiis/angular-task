@@ -1,1 +1,11 @@
-<p>layout works!</p>
+
+<div class="system-layout">
+    <app-sidebar></app-sidebar>
+    <div class="container">
+        <app-navbar (toggleSidebar)="toggleSidebar()" [sidebarOpen]="isSidebarOpen()"></app-navbar>
+        <main class="system-layout__main fade-in">
+            <router-outlet></router-outlet>
+        </main>
+        <app-footer></app-footer>
+    </div>
+</div>

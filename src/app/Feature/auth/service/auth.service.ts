@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../../Core/services/api.service';
 import { Router } from '@angular/router';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private readonly TOKEN_KEY = 'auth_token';
+  private readonly USER_KEY = 'auth_user';
+  private currentUserSubject = new BehaviorSubject<any | null>(this.getUserFromStorage());
 
   constructor(
     private apiService: ApiService,
     private router: Router
-  ) {}
+  ) { }
 
   login(username: string, password: string): Observable<any> {
     return this.apiService.post('auth/login', { username, password }).pipe(
@@ -44,6 +46,20 @@ export class AuthService {
     );
   }
 
+  getCurrentUser(): Observable<any> {
+    return this.apiService.get('auth/me').pipe(
+      tap((user: any) => {
+        console.log('Current user (simulated):', user);
+        localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+        this.currentUserSubject.next(user);
+      }),
+      catchError((error: any) => {
+        console.error('Failed to fetch current user', error);
+        return throwError(() => error);
+      })
+    );
+  }
+
   getToken(): string | null {
     return localStorage.getItem(this.TOKEN_KEY);
   }
@@ -58,6 +74,20 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.USER_KEY);
+    this.currentUserSubject.next(null);
     this.router.navigate(['/auth/login']);
+  }
+
+  get currentUser$(): Observable<any | null> {
+    return this.currentUserSubject.asObservable();
+  }
+  
+  get currentUser(): any | null {
+    return this.currentUserSubject.value;
+  }
+  private getUserFromStorage(): any | null {
+    const user = localStorage.getItem(this.USER_KEY);
+    return user ? JSON.parse(user) : null;
   }
 }

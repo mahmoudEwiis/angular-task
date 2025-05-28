@@ -1,11 +1,36 @@
-import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './../../../../auth/service/auth.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [NgIf],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
+  @Input() sidebarOpen = true;
+  @Output() toggleSidebar = new EventEmitter<void>();
+  
+  constructor(
+    private authService: AuthService,
+    private Router: Router
+  ) {}
+  
 
+  
+  get currentUser(): any  {
+    const user = this.authService.currentUser;
+    return user
+  }
+  
+  onToggleSidebar(): void {
+    this.toggleSidebar.emit();
+  }
+  
+  logout(event: Event): void {
+    event.preventDefault();
+    this.authService.logout();
+  }
 }

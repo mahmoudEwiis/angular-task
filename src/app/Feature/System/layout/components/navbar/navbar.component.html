@@ -1,1 +1,30 @@
-<p>navbar works!</p>
+
+
+
+<nav class="navbar">
+    <div class="container d-flex justify-content-between align-items-center">
+        <a class="navbar-brand" routerLink="/">
+            <img routerLink="/" src="/favicon.ico" alt="Logo" class="img-fluid  mb-4">
+        </a>
+
+        <div>
+            <ng-container *ngIf="currentUser; else loginLink">
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img [src]="currentUser.image" class="rounded-circle me-2" height="30" alt="User Avatar" />
+                        <span>User</span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
+                        <li><a class="dropdown-item" (click)="logout($event)">Logout</a></li>
+                    </ul>
+                </div>
+            </ng-container>
+
+            <ng-template #loginLink>
+                <a class="btn btn-primary" routerLink="/auth/login">Login</a>
+            </ng-template>
+        </div>
+    </div>
+</nav>
