@@ -12,7 +12,7 @@ export class SystemService {
   getProducts() {
     return this.ApiService.get('/products');
   }
-  getProductById(id: string) {
+  getProductById(id: number) {
     return this.ApiService.get(`/products/${id}`);
   }
 }
