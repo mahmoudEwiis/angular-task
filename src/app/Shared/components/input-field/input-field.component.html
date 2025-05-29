@@ -9,12 +9,6 @@
             <ng-container *ngTemplateOutlet="prependTemplate"></ng-container>
         </span>
 
-        <!-- <input #inputElement [type]="type" [id]="id" class="form-control" [placeholder]="placeholder"
-            [disabled]="disabled" [readonly]="readonly" [value]="value" [ngClass]="{ 
-            'is-invalid': control?.invalid && (control?.dirty || control?.touched),
-            'is-valid': control?.valid && (control?.dirty || control?.touched) && showValidFeedback
-          }" (input)="onInput($event)" (blur)="onBlur()" /> -->
-
         <input #inputElement [type]="type" [id]="id" class="form-control" [placeholder]="placeholder"
             [disabled]="disabled" [readonly]="readonly" [formControl]="control" (blur)="onBlur()" />
 
@@ -22,7 +16,7 @@
             <ng-container *ngTemplateOutlet="appendTemplate"></ng-container>
         </span>
 
-        <div class="invalid-feedback" *ngIf="control.invalid && (control.dirty || control.touched)">
+        <div class="invalid-feedback" [ngClass]="{'d-block': control.invalid && (control.dirty || control.touched)}">
             <ng-container *ngIf="control?.errors?.['required']">
                 This field is required
             </ng-container>
@@ -37,6 +31,9 @@
             </ng-container>
             <ng-container *ngIf="control && control.errors && control.errors['pattern']">
                 Please enter a valid format
+            </ng-container>
+            <ng-container *ngIf="control && control.errors && control.errors?.['passwordsDoNotMatch']">
+                Passwords do not match
             </ng-container>
             <ng-container *ngIf="control && control.errors && control.errors['custom']">
                 {{ control.errors['custom'] }}

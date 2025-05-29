@@ -127,11 +127,28 @@ export class RegisterComponent {
     this.confirmPasswordControl = this.registerForm.get('confirmPassword') as FormControl;
   }
 
-  passwordMatchValidator(group: FormGroup): { [key: string]: boolean } | null {
+    passwordMatchValidator(group: FormGroup): null {
     const password = group.get('password')?.value;
-    const confirmPassword = group.get('confirmPassword')?.value;
+    const confirmPasswordControl = group.get('confirmPassword');
 
-    return password === confirmPassword ? null : { passwordsDoNotMatch: true };
+    if (!confirmPasswordControl) return null;
+
+    const confirmPassword = confirmPasswordControl.value;
+    const errors = confirmPasswordControl.errors || {};
+
+    if (password === confirmPassword) {
+      if (errors['passwordsDoNotMatch']) {
+        delete errors['passwordsDoNotMatch'];
+        confirmPasswordControl.setErrors(Object.keys(errors).length ? errors : null);
+      }
+    } else {
+      confirmPasswordControl.setErrors({
+        ...errors,
+        passwordsDoNotMatch: true
+      });
+    }
+
+    return null;
   }
 
   onSubmit(): void {
@@ -143,11 +160,11 @@ export class RegisterComponent {
 
     const { name, username, email, password } = this.registerForm.value;
     this.AuthService.register(name, username, email, password).subscribe({
-      next: (response:any) => {
+      next: (response: any) => {
         console.log('Registration successful:', response);
         this.router.navigate(['/auth/login']);
       },
-      error: (error:any) => {
+      error: (error: any) => {
         console.error('Registration failed:', error);
         this.isLoading = false;
       }
