@@ -58,6 +58,7 @@ angular-task/
 - **Register & Login**: Using reactive forms, user inputs are validated and sent to a mock API.
 - **Token Storage**: The token is stored in `localStorage` for authenticated requests.
 - **AuthGuard**: Protects routes from unauthorized access.
+- **AdminGuard**: Ensures only admin users can access certain routes. 
 - **AuthInterceptor**: Automatically attaches token to HTTP requests.
 
 ---
@@ -95,6 +96,9 @@ angular-task/
 
 ## 📑 Features
 - **Authentication**: Register and login functionality with form validation.
+- **interceptors**: HTTP interceptors for request/response handling.
+- **Guards**: Route guards for protecting routes based on authentication and roles.
+- **Loader**: Global loading indicator for async operations.
 - **Reusable Components**: Input fields, buttons, and cards for consistent UI.
 - **Responsive Layout**: Mobile-first design using Bootstrap 5.
 - **Error Handling**: Global error handling for HTTP requests.
