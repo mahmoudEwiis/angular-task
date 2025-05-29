@@ -95,6 +95,7 @@ angular-task/
 ---
 
 ## 📑 Features
+- **GLOBAL Api Service**: A centralized service for making HTTP requests. 
 - **Authentication**: Register and login functionality with form validation.
 - **interceptors**: HTTP interceptors for request/response handling.
 - **Guards**: Route guards for protecting routes based on authentication and roles.
