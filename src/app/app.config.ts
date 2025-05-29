@@ -7,9 +7,10 @@ import Aura from '@primeng/themes/aura';
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './Core/interceptors/auth.interceptor';
+import { loaderInterceptor } from './Core/interceptors/loader.interceptor';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideHttpClient(withInterceptors([authInterceptor])) , provideAnimationsAsync(), providePrimeNG({ theme: { preset: Aura } }) , provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
+  providers: [provideHttpClient(withInterceptors([loaderInterceptor, authInterceptor])) , provideAnimationsAsync(), providePrimeNG({ theme: { preset: Aura } }) , provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
 };
 
 
