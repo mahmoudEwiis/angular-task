@@ -21,6 +21,9 @@
 2. additionally, you can register a new user using the register page but the data can't use backend don't save.
 
 **Angular Task** is a fully functional web application built with Angular that includes authentication, reusable UI components, reactive forms, and a responsive layout. The project follows Angular best practices and demonstrates component-based design and modular architecture.
+---
+## 🚀 DEMO
+[Live Demo](https://angular-task-snowy.vercel.app/)
 
 ---
 
