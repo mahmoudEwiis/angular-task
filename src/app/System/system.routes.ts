@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
-import { authGuard } from '../Core/guards/auth.guard';
+import { adminGuard, authGuard } from '../Core/guards/auth.guard';
 
 export const SYSTEM_ROUTES: Routes = [
   {
@@ -14,7 +14,7 @@ export const SYSTEM_ROUTES: Routes = [
       },
       {
         path: 'dashboard',
-        canActivate: [authGuard],
+        canActivate: [authGuard , adminGuard ],
         loadComponent: () => import('./pages/dashboard/dashboard.component').then(c => c.DashboardComponent)
       },
       {

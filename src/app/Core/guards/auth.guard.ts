@@ -12,3 +12,15 @@ export const authGuard: CanActivateFn = () => {
   
   return router.parseUrl('/auth/login');
 };
+
+
+export const adminGuard: CanActivateFn = () => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+  
+  if (authService.isAdmin()) {
+    return true;
+  }
+  
+  return router.parseUrl('/auth/login');
+};

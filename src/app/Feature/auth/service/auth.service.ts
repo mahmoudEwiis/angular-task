@@ -79,6 +79,11 @@ export class AuthService {
     this.router.navigate(['/auth/login']);
   }
 
+  isAdmin(): boolean {
+    const user = this.getUserFromStorage();
+    return user && user.role === 'admin';
+  }
+  
   get currentUser$(): Observable<any | null> {
     return this.currentUserSubject.asObservable();
   }
