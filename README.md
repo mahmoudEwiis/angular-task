@@ -68,6 +68,7 @@ angular-task/
 - `InputFieldComponent`: Input with error handling.
 - `ButtonComponent`: Customizable button.
 - `CardComponent`: Flexible Bootstrap-style card with header/footer slots.
+- `InputUploadComponent`: File input with drag-and-drop support.
 
 
 ---
