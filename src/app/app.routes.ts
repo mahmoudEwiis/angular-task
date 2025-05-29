@@ -14,4 +14,8 @@ export const routes: Routes = [
     path: 'system',
     loadChildren: () => import('./System/system.routes').then(m => m.SYSTEM_ROUTES)
   },
+  {
+    path: '**',
+    loadComponent: () => import('../app/System/pages/page-not-found/page-not-found.component').then(c => c.PageNotFoundComponent)
+  }
 ];
