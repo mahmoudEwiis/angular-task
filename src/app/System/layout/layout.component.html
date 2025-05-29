@@ -1,8 +1,8 @@
 
 <div class="system-layout">
-    <app-sidebar></app-sidebar>
+    <app-sidebar [isOpen]="isSidebarOpen().valueOf()" (closed)="toggleSidebar($event)"></app-sidebar>
     <div class="container">
-        <app-navbar (toggleSidebar)="toggleSidebar()" [sidebarOpen]="isSidebarOpen()"></app-navbar>
+        <app-navbar (toggleSidebar)="toggleSidebar($event)" [sidebarOpen]="isSidebarOpen()"></app-navbar>
         <main class="system-layout__main fade-in">
             <router-outlet></router-outlet>
         </main>

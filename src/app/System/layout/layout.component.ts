@@ -12,8 +12,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 })
 export class LayoutComponent {
 
-  isSidebarOpen = signal(true);
-  toggleSidebar(): void {
-    this.isSidebarOpen.update(state => !state);
+  isSidebarOpen = signal(false);
+  toggleSidebar(isOpen: boolean): void {
+    this.isSidebarOpen.update(() => isOpen);
   }
 }
