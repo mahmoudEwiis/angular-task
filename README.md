@@ -18,6 +18,7 @@
 
 ## 📁 Project Structure
 
+``` plaintext
 angular-task/
 ├── src/
 │   ├── app/
@@ -42,7 +43,7 @@ angular-task/
 ├── angular.json
 ├── package.json
 └── README.md
-
+```
 ---
 
 ## 🔐 Authentication
