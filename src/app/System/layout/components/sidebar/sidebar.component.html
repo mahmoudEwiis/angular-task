@@ -8,9 +8,12 @@
         </button>
     </div>
 
-    <ul class="sidebar-menu">
-        <!-- No items -->
-    </ul>
+    <div class="sidebar-body" style="height: 100vh; ">
+        <div class=" d-flex flex-column align-items-center justify-content-center h-100 " 
+             >
+            <p class="text-center text-muted">Sidebar content goes here</p>
+        </div>
+    </div>
 </nav>
 <!-- toggle class-->
 <div class="sidebar-mask" [ngClass]="{'open': isOpen}" (click)="handleClose()"></div>
