@@ -4,6 +4,11 @@
 1. to try the project use this credentials:
 - **UserName**: `emilys`
 - **Password**: `emilyspass`
+- **Role**: `Admin`
+
+- **UserName**: `logant`
+- **Password**: `logantpass`
+- **Role**: `User`
 
 2. additionally, you can register a new user using the register page but the data can't use backend don't save.
 
