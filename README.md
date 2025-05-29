@@ -1,59 +1,131 @@
-# AngularTask
+# 📋 Angular Task
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+**Angular Task** is a fully functional web application built with Angular that includes authentication, reusable UI components, reactive forms, and a responsive layout. The project follows Angular best practices and demonstrates component-based design and modular architecture.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🧰 Tech Stack
+
+- **Angular**
+- **RxJS**
+- **Angular Router**
+- **Reactive Forms**
+- **Bootstrap 5**
+- **SCSS**
+- **TypeScript**
+
+---
+
+## 📁 Project Structure
+
+angular-task/
+├── src/
+│   ├── app/
+│   │   ├── Core/
+│   │   │   ├── guards/
+│   │   │   ├── interceptors/
+│   │   │   └── services/
+│   │   ├── Feature/
+│   │   │   ├── auth/
+│   │   │   │   ├── pages/
+│   │   │   │   └── service/
+│   │   ├── Shared/
+│   │   │   ├── components/
+│   │   │   └── directives/
+│   │   ├── Layout/
+│   │   │   ├── components/
+│   │   │   └── layout.component.ts
+│   │   ├── AppComponent/
+│   │   └── app.module.ts
+├── assets/
+├── environments/
+├── angular.json
+├── package.json
+└── README.md
+
+---
+
+## 🔐 Authentication
+
+- **Register & Login**: Using reactive forms, user inputs are validated and sent to a mock API.
+- **Token Storage**: The token is stored in `localStorage` for authenticated requests.
+- **AuthGuard**: Protects routes from unauthorized access.
+- **AuthInterceptor**: Automatically attaches token to HTTP requests.
+
+---
+
+## 🧩 Shared Components
+
+- `InputFieldComponent`: Input with error handling.
+- `ButtonComponent`: Customizable button.
+- `CardComponent`: Flexible Bootstrap-style card with header/footer slots.
+
+
+---
+
+## 📐 Layout
+- **Responsive Design**: Built with Bootstrap 5, ensuring a mobile-first approach.
+- **Header & Footer**: Reusable components for consistent layout.
+- **Sidebar**: Collapsible sidebar for navigation, with links to different sections.
+
+---
+
+## 📄 Pages
+- **Login Page**: User authentication with email and password.
+- **Register Page**: User registration with form validation.
+- **Dashboard Page**: Displays user information and a welcome message.
+- **Not Found Page**: Custom 404 page for unmatched routes.
+- **Home Page**: Landing page with application overview.
+---
+
+## 📦 Modules
+- **CoreModule**: Contains singleton services, guards, and interceptors.
+- **FeatureModule**: Contains feature-specific components and services, such as authentication.
+- **SharedModule**: Contains shared components, directives, and pipes.
+- **LayoutModule**: Contains layout components like header, footer, and sidebar.
+---
+
+## 📑 Features
+- **Authentication**: Register and login functionality with form validation.
+- **Reusable Components**: Input fields, buttons, and cards for consistent UI.
+- **Responsive Layout**: Mobile-first design using Bootstrap 5.
+- **Error Handling**: Global error handling for HTTP requests.
+- **Lazy Loading**: Feature modules are lazy-loaded for better performance.
+---
+
+## 🧪 Forms
+
+- **ReactiveFormsModule**: Used for all forms.
+- **Validation**: Required, email, password length, password match, terms agreement.
+- **Dynamic error messages** shown in the template.
+
+---
+
+## 🧭 Routing
+
+- **Modular Routing**: Feature-based lazy loading.
+- **Guards**: `canActivate`, `canLoad` used for protecting routes.
+- **Navigation**: Clean navigation between login, register, dashboard.
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/mahmoudEwiis/angular-task.git
+cd angular-task
+```
+### 2. Install Dependencies
+
+```bash
+npm install
+``` 
+### 3. Run the Application
 
 ```bash
 ng serve
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### 4. Open in Browser
+Open your browser and navigate to `http://localhost:4200`.
