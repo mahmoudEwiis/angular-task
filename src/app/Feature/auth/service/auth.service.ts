@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../../../Core/services/api.service';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,20 @@ export class AuthService {
 
   constructor(
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) { }
 
   login(username: string, password: string): Observable<any> {
     return this.apiService.post('auth/login', { username, password }).pipe(
       tap((response: any) => {
         this.setToken(response?.token);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Login Successful',
+          detail: 'You have logged in successfully.',
+          life: 1000,
+        });
       }),
       catchError((error: any) => {
         console.error('Login failed', error);
@@ -77,6 +85,13 @@ export class AuthService {
     localStorage.removeItem(this.USER_KEY);
     this.currentUserSubject.next(null);
     this.router.navigate(['/auth/login']);
+    this.messageService.add(
+      {
+        severity: 'info',
+        summary: 'Logged Out',
+        detail: 'You have been logged out successfully.',
+        life: 1000,
+      });
   }
 
   isAdmin(): boolean {

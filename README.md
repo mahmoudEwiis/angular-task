@@ -2,13 +2,21 @@
 
 ## 📖 Notes 
 1. to try the project use this credentials:
+
+```
 - **UserName**: `emilys`
 - **Password**: `emilyspass`
 - **Role**: `Admin`
 
+```
+```
 - **UserName**: `logant`
 - **Password**: `logantpass`
 - **Role**: `User`
+
+```
+
+
 
 2. additionally, you can register a new user using the register page but the data can't use backend don't save.
 
@@ -103,6 +111,7 @@ angular-task/
 ## 📑 Features
 - **GLOBAL Api Service**: A centralized service for making HTTP requests. 
 - **Authentication**: Register and login functionality with form validation.
+- **Toaster**: Provides feedback messages to users.
 - **interceptors**: HTTP interceptors for request/response handling.
 - **Guards**: Route guards for protecting routes based on authentication and roles.
 - **Loader**: Global loading indicator for async operations.
