@@ -46,6 +46,12 @@ export class AuthService {
     return this.apiService.post('users/add', newUser).pipe(
       tap((response: any) => {
         console.log('User registered (simulated):', response);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Registration Successful',
+          detail: 'You have registered successfully. Please log in.',
+          life: 1000,
+        });
       }),
       catchError((error: any) => {
         console.error('Registration failed', error);
